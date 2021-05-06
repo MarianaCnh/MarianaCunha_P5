@@ -1,0 +1,90 @@
+/******GLOBAL******/
+body {
+    background-color: #8fc0a9;
+    color: black;
+    margin: auto;
+    height: 100%;
+    font-family: 'Oxygen','Courier New', Courier, monospace;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+}
+
+footer {
+    background-color: #70a288;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+/************ HEADER ************/
+
+.header {
+    display: flex;
+    background-color: #70a288;
+    padding: 15px 0;
+}
+
+.navigation {
+    width: 100%;
+}
+
+.acces {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 0;
+}
+
+.home {
+    padding: 10px;
+}
+
+.cart {
+    padding: 10px;
+}
+
+
+
+
+/******** CARTES PRODUITS **********/
+
+.sectionProduct {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardProduct {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: #70a288 solid 2px;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px 20px 0 0;
+}
+
+/******** FOOTER *********/
+
+.contact {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 0;
+    width: 100%;
+}
