@@ -17,7 +17,7 @@ function productFetch() {
     .catch((error) => console.log(error))
     .then((data) => {
         if (data){
-            showProduct(data)
+            
         }
     });
 }
