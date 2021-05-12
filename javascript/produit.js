@@ -34,9 +34,9 @@ function showProduct(camera) {
         <label for="optionProduit"></label>
         <select name="optionProduit" id="optionProduit">
         <option value='nomChoix'>Lentilles</option>
-        <option value='lentille1'>${camera.lenses[0]}</option>
-        <option value='lentille2'>${camera.lenses[1]}</option>
-        <option value='lentille3'>${camera.lenses[2]}</option></select>
+        <option value='lentille1'>${camera.lenses}</option>
+        <option value='lentille2'>${camera.lenses}</option>
+        <option value='lentille3'>${camera.lenses}</option></select>
         </form>
       <button class="btn-envoyer">Commander l'article</button>
       </article>`;
