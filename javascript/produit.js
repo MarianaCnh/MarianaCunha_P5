@@ -22,6 +22,7 @@ function productFetch() {
     });
 }
 
+// boucle pour itérer la page produit
 function showProduct(camera) {
     document.querySelector(
         "#cam"
@@ -32,16 +33,26 @@ function showProduct(camera) {
       <p class="price">${camera.price}€</p>
       <form>
         <label for="optionProduit"></label>
-        <select name="optionProduit" id="optionProduit">
-        <option value='nomChoix'>Lentilles</option>
-        <option value='lentille1'>${camera.lenses}</option>
-        <option value='lentille2'>${camera.lenses}</option>
-        <option value='lentille3'>${camera.lenses}</option></select>
+        <select name="optionProduit" id="optionProduit">${this.showOptionLenses(camera.lenses)}
+        </select>
         </form>
       <button class="btn-envoyer">Commander l'article</button>
       </article>`;
 }
 productFetch();
+
+
+
+//Boucle et itération pour avoir les options de lentilles
+function showOptionLenses(lenses) {
+    let optionLenses = '';
+    for (let i = 0, size = lenses.length; i < size; i++) {
+        optionLenses += `<option value="${(lenses[i])}">${(lenses[i])}</option>`;
+    }
+    return optionLenses;
+};
+
+//showOptionLenses();
 
 // const lenses = document.getElementById("optionProduit")
 
