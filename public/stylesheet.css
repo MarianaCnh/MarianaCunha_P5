@@ -29,8 +29,15 @@ footer {
 /************ HEADER ************/
 
 .logo {
-    padding: 5px;
-    height: 150px;
+    height: 50%;
+    width: 50%;
+    filter: brightness(150);
+
+}
+
+.nomBoutique {
+    font-size: larger;
+    padding-top: 20px;
 }
 .header {
     display: flex;
@@ -40,6 +47,7 @@ footer {
 
 .navigation {
     width: 100%;
+    margin-right: 10px;
 }
 
 .acces {
@@ -55,6 +63,14 @@ footer {
 
 .cart {
     padding: 10px;
+    margin-right: 10px;
+}
+
+.cart2 {
+    padding: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
 }
 
 
