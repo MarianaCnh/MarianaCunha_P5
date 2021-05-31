@@ -19,10 +19,10 @@ function productFetch() {
     .then((data) => {
         if (data){
             showProduct(data);
+            //à partir du fetch je permet au bouton de push les données dans le local storage
             const btn = document.querySelector(".btn-panier");
             btn.addEventListener("click",(ev) => {
             ev.preventDefault();
-            console.log("fonctionne");
             ajoutDuProduit(data);
       });
         }
@@ -71,22 +71,17 @@ function ajoutDuProduit(camera){
     _id : camera._id,
     name : camera.name,
     price : camera.price,
-    imageUrl : camera.imageUrl,
     qte : 1,
     option : choixLenses,
 };
 // push dans mon local storage pour récup les info de mon objet
-if (monLocal === null) {
+if (monLocal == null) {
     monPanier.push(camerasProduit);
     localStorage.setItem("monLocal", JSON.stringify(monPanier));
 }
-//ajouter le produit dans le panier 
-// if (monLocal[camera._id] !== null) {
-//     monLocal[camera._id].qte += 1;
-// } else {
-//     monLocal[camera._id] = monLocal;
-// }
+
 };
+
 
 
 

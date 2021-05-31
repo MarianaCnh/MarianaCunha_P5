@@ -29,8 +29,6 @@ footer {
 /************ HEADER ************/
 
 .logo {
-    height: 50%;
-    width: 50%;
     filter: brightness(150);
 
 }
@@ -107,4 +105,17 @@ footer {
     align-items: center;
     padding: 20px 0;
     width: 100%;
+}
+
+/************** PANIER ***********/
+table {
+    display: flex;
+    justify-content: center;
+}
+td {
+    border: 1px solid black;
+}
+th {
+    display: flex;
+    flex-direction: column;
 }
