@@ -22,7 +22,7 @@ function showCam(cameraArray) {
       <img src="${camera.imageUrl}" class="img">
       <p class="name">${camera.name}</p>
       <p class="description">${camera.description}</p>
-      <p class="price">${camera.price}€</p>
+      <p class="price">${camera.price / 100}€</p>
       <button class="boutoncommande">Commander l'article</button>
       </a></article>`;
       }

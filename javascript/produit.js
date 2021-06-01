@@ -37,7 +37,7 @@ function showProduct(camera) {
       <img src="${camera.imageUrl}" class="img">
       <p class="name">${camera.name}</p>
       <p class="description">${camera.description}</p>
-      <p class="price">${camera.price}€</p>
+      <p class="price">${camera.price / 100}€</p>
       <form>
         <label for="optionProduit"></label>
         <select name="optionProduit" id="optionProduit">${this.showOptionLenses(camera.lenses)}
@@ -59,10 +59,21 @@ function showOptionLenses(lenses) {
     return optionLenses;
 };
 
+// const idLens = document.querySelector("#optionProduit")
+
+// //mettre le choix dans une variable 
+// const choixLentilles = idLens;
+
+// //Prendre en compte le choix
+// const btnvalidation = document.querySelector(".btn-panier")
+
 function ajoutDuProduit(camera){
 
-    let monPanier = [];
-    let monLocal = JSON.parse(localStorage.getItem("monLocal"));
+    
+    let panier = JSON.parse(localStorage.getItem("panier"));
+    if (panier == null){
+        panier = []
+    }
     const optionsLentilles = document.querySelector("#optionProduit");
     const choixLenses = optionsLentilles.value;
 
@@ -70,18 +81,15 @@ function ajoutDuProduit(camera){
  let camerasProduit = {
     _id : camera._id,
     name : camera.name,
-    price : camera.price,
+    price : camera.price / 100,
     qte : 1,
     option : choixLenses,
 };
 // push dans mon local storage pour récup les info de mon objet
-if (monLocal == null) {
-    monPanier.push(camerasProduit);
-    localStorage.setItem("monLocal", JSON.stringify(monPanier));
+panier.push(camerasProduit);
+localStorage.setItem("panier", JSON.stringify(panier));
+
 }
-
-};
-
 
 
 
@@ -108,6 +116,3 @@ if (monLocal == null) {
 //     console.log(choixProduit);
 
 //     let optionProduit = {
-        
-//     }
-// })
