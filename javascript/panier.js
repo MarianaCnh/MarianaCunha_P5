@@ -46,8 +46,10 @@ for(let l = 0; l < btnSupp.length; l++){
         //retour sur la page panier pour que le message de panier vide s'affiche
         window.location.href = "panier.html";
         //quand je clique sur le bouton le localstorage se vide aussi
-        localStorage.clear();
     })
+    if (panier === []) {
+        localStorage.clear();
+    }
 
 }
 

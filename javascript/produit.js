@@ -71,6 +71,7 @@ function ajoutDuProduit(camera){
 
     
     let panier = JSON.parse(localStorage.getItem("panier"));
+    
     if (panier == null){
         panier = []
     }
