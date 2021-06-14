@@ -31,15 +31,12 @@ function productFetch() {
 
 // boucle pour itérer la page produit
 function showProduct(camera) {
-    document.querySelector(
-        "#cam"
-      ).innerHTML = `<article class="cardProduct">
+    document.querySelector("#cam").innerHTML = `<article class="cardProduct">
       <img src="${camera.imageUrl}" class="img">
       <p class="name">${camera.name}</p>
       <p class="description">${camera.description}</p>
       <p class="price">${camera.price / 100}€</p>
       <form>
-        <label for="optionProduit"></label>
         <select name="optionProduit" id="optionProduit">${this.showOptionLenses(camera.lenses)}
         </select>
         </form>
@@ -59,38 +56,56 @@ function showOptionLenses(lenses) {
     return optionLenses;
 };
 
-// const idLens = document.querySelector("#optionProduit")
+function getPanier() {
+   return JSON.parse(localStorage.getItem("panier")) || [];
+}
 
-// //mettre le choix dans une variable 
-// const choixLentilles = idLens;
 
-// //Prendre en compte le choix
-// const btnvalidation = document.querySelector(".btn-panier")
 
 function ajoutDuProduit(camera){
 
-    
-    let panier = JSON.parse(localStorage.getItem("panier"));
-    
-    if (panier == null){
-        panier = []
-    }
-    const optionsLentilles = document.querySelector("#optionProduit");
-    const choixLenses = optionsLentilles.value;
+  qtePlace = document.querySelector(".inputqte");
+  const choixQte = qtePlace;
+  let autreItem = true;
+
+  const optionsLentilles = document.querySelector("#optionProduit");
+  const choixLenses = optionsLentilles.value;
 
     //objet avec chaque propriété de produit
- let camerasProduit = {
+  var camerasProduit = {
     _id : camera._id,
     name : camera.name,
     price : camera.price / 100,
     qte : 1,
     option : choixLenses,
-};
-// push dans mon local storage pour récup les info de mon objet
-panier.push(camerasProduit);
-localStorage.setItem("panier", JSON.stringify(panier));
+  };
+  
+  // si le panier est vide alors il doit ajouté un produit dans le tableau
+  if (panier == null){
+    panier = []
+}else {
+  product = JSON.parse(localStorage.getItem('product'));
+
+//Pour chaque produit du même id et même option il faut augmenté la quantité
+  panier.forEach((produit) => {
+    if (camera._id === camerasProduit._id && choixLenses === produit.option) {
+      camerasProduit.qte = parseInt(produit.qte) + parseInt(choixQte);
+      produit.qte ++
+      autreItem = false;
+    }
+  });
 
 }
+
+  if (autreItem)panier.push(camerasProduit);
+  localStorage.setItem("panier", JSON.stringify(panier));
+
+
+// // push dans mon local storage pour récup les info de mon objet
+// panier.push(camerasProduit);
+// localStorage.setItem("panier", JSON.stringify(panier));
+};
+
 
 
 
@@ -117,3 +132,28 @@ localStorage.setItem("panier", JSON.stringify(panier));
 //     console.log(choixProduit);
 
 //     let optionProduit = {
+
+//     
+// function checklength(camerasProduit, cam) {
+//   if (cam.length === 0) {
+//     camerasProduit = 1;
+//   } else {
+//     sameCam(camerasProduit, cam);
+//   }
+// }
+
+//Si il y a plus d'une camera dans le tableau, vérifie qu'ils sont identique
+// function sameCam(camerasProduit, cam) {
+//     for (i = 0; i < cam.length; i++) {
+//       if (
+//         camerasProduit._id === cam[i]._id &&
+//         camerasProduit.option === cam[i].option
+//       ) {
+//         cam[i] += 1;
+//         camerasProduit = cam[i];
+//       } else {
+//         camerasProduit = 1;
+//       }
+//     }
+//     checklength(camerasProduit, cam);
+//   };

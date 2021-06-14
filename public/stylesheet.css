@@ -113,10 +113,84 @@ table {
     justify-content: center;
 }
 td {
-    border: 1px solid black;
+    border: 5px solid black;
     padding: 5px;
 }
 th {
     display: flex;
     flex-direction: column;
+}
+
+.inputqte {
+    width:3%;
+}
+
+/*************** FORMULAIRE ***************/
+
+.titreFormulaire {
+    display: flex;
+    justify-content: center;
+}
+
+.contenuformulaire {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 0 20% 20%;
+}
+
+label {
+    padding: 5px;
+}
+
+#prenom {
+    border: 3px solid#70a288;
+    width: 40%;
+    padding: 5px;
+    margin: 0 10px 20px 0;
+}
+
+#nom {
+    border: 3px solid#70a288;
+    width: 40%;
+    padding: 5px;
+    margin: 0 10px 20px 0;
+}
+
+#adresse {
+    border: 3px solid#70a288;
+    width: 40%;
+    margin: 0 10px 20px 0;
+    
+}
+
+#ville {
+    border: 3px solid#70a288;
+    width: 40%;
+    padding: 5px;
+    margin: 0 10px 20px 0;
+}
+
+#codepostal {
+    border: 3px solid#70a288;
+    width: 40%;
+    padding: 5px;
+    margin: 0 10px 20px 0;
+}
+
+#email {
+    border: 3px solid#70a288;
+    width: 40%;
+    padding: 5px;
+    margin: 0 10px 20px 0;
+}
+
+#envoyerFormulaire {
+    border: 3px solid#70a288;
+    border-radius: 30px;
+    width: 20%;
+    background-color: #9ae0c0;
+    margin: 10px;
+    font-family: 'Oxygen','Courier New', Courier, monospace;
+    padding: 10px;
 }
