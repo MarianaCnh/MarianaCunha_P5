@@ -28,24 +28,3 @@ function showCam(cameraArray) {
       }
 }
 initApp();
-
-
-
-// const url = 'http://localhost:3000/api/cameras';
-
-// //créer une requête 
-// let requete = new XMLHttpRequest();// créer un objet
-// requete.open('GET', url); //premier paramétre GET / Post
-// requete.responseType = 'json'; // Nous attendons du JSON
-// requete.send(); // Nous envoyons notre requête 
-
-// // dès qu'on reçoit une réponse, cette fonction est executée
-// requete.onload = function(){
-//   if (requete.readyState === XMLHttpRequest.DONE) {
-//     if(requete.status === 200) {
-//       let reponse = requete.response; //on stock la réponse
-//       console.log(reponse);
-//     }
-//   }
-// }
-// showCam(reponse)

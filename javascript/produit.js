@@ -97,6 +97,7 @@ function ajoutDuProduit(camera){
 
 }
 
+
   if (autreItem)panier.push(camerasProduit);
   localStorage.setItem("panier", JSON.stringify(panier));
 

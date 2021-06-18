@@ -10,11 +10,13 @@ let totalPrix = 0;
 let autreTotal = 0;
 let plus = document.querySelectorAll(".btn-add");
 let qteItem = document.querySelectorAll("inputqte");
+let products = [];
+// products = JSON.parse(localStorage.getItem("panier"));
 
 
 
 //Si le panier est vide il faut l'afficher 
-if (panier === null || panier == 0){
+if (panier === null || panier == 0) {
     const panierVide = `
     <div>Le panier est vide</div>`;
     positionElement.innerHTML = panierVide;
@@ -22,45 +24,41 @@ if (panier === null || panier == 0){
     //si le panier n'est pas vide il faut afficher les produits, j'utilise une boucle for avec itérations pour cela 
     for (k = 0; k < panier.length; k++) {
         produitPanier = produitPanier + `
-        <table id="tableproduit">
-            <tr>
                 <td id="nomproduit">${panier[k].name}
                 Option :${panier[k].option}
                 ${panier[k].price}€
                 <button class="btn-remove">-</button>
                 <span class="inputqte">${panier[k].qte}</span>
                 <button class="btn-add">+</button>
-                <button class="btn-supprimer"><i class="fas fa-trash-alt"></i></button></td> </tr> 
-            </table> `; 
-            positionElement.innerHTML = produitPanier;
-            
+                <button class="btn-supprimer"><i class="fas fa-trash-alt"></i></button></td>  `;
+        positionElement.innerHTML = produitPanier;
+
+
     }
-    };
+};
 
-    
-    function btnAdd(){
+// function btnAdd() {
+//     const boutonAdd = document.getElementsByClassName(".btn-add");
 
-        const boutonAdd = document.getElementsByClassName(".btn-add");
-        
-        for(let i = 0; i < boutonAdd.length; i++){
-        boutonAdd.addEventListener("click", function(event){
-            event.preventDefault();
-            panier.qte++
+//     for (let i = 0; i < boutonAdd.length; i++) {
+//         boutonAdd[i].addEventListener("click", function(event) {
+//             event.preventDefault();
+//             panier[i].qte++
 
-            localStorage.setItem("panier", JSON.stringify(panier));
-        });
-    }
-    }
-    btnAdd();
-    
+//                 localStorage.setItem("panier", JSON.stringify(panier));
+//         });
 
-    // Si le panier dans le localStorage est strictement égal au panier alors il incrémente dans le localStorage
+//     }
+// };
 
- function supprimerBouton(){
+
+// Si le panier dans le localStorage est strictement égal au panier alors il incrémente dans le localStorage
+
+function supprimerBouton() {
     // Supprimer les articles 
     let btnSupp = document.querySelectorAll(".btn-supprimer");
-    for(let l = 0; l < btnSupp.length; l++){
-        btnSupp[l].addEventListener("click", (event) =>{
+    for (let l = 0; l < btnSupp.length; l++) {
+        btnSupp[l].addEventListener("click", (event) => {
             event.preventDefault();
             //prendre l'option du produit qui va être supprimer
             let idSupp = panier[l].option;
@@ -73,29 +71,29 @@ if (panier === null || panier == 0){
             //quand je clique sur le bouton le localstorage se vide aussi
         })
     }
-    };
+};
 
 supprimerBouton();
 
 
-function calculQuantiteProduit(){
-JSON.parse(localStorage.getItem("panier")).forEach((panier)=>{
-    autreTotal += panier.qte;
-    console.log(autreTotal)
-});
-let quantiteTotal = `<div>nombre total de produit : ${autreTotal}</div>`;
-positionElement.insertAdjacentHTML("beforeend", quantiteTotal);
+function calculQuantiteProduit() {
+    JSON.parse(localStorage.getItem("panier")).forEach((panier) => {
+        autreTotal += panier.qte;
+        console.log(autreTotal)
+    });
+    let quantiteTotal = `<div>nombre total de produit : ${autreTotal}</div>`;
+    positionElement.insertAdjacentHTML("beforeend", quantiteTotal);
 };
 calculQuantiteProduit();
 
-function calculTotalPrix() {  
-JSON.parse(localStorage.getItem("panier")).forEach((panier)=>{
-    totalPrix += panier.price *= panier.qte;
-    console.log(totalPrix)
-});
+function calculTotalPrix() {
+    JSON.parse(localStorage.getItem("panier")).forEach((panier) => {
+        totalPrix += panier.price *= panier.qte;
+        console.log(totalPrix)
+    });
 
-let prixTotal = `<div>Le prix total est de : ${totalPrix}</div>`;
-positionElement.insertAdjacentHTML("beforeend", prixTotal);
+    let prixTotal = `<div>Le prix total est de : ${totalPrix}</div>`;
+    positionElement.insertAdjacentHTML("beforeend", prixTotal);
 
 };
 calculTotalPrix()
@@ -106,30 +104,30 @@ calculTotalPrix()
 const afficherFormulaireHtml = () => {
     //Sélection élément du DOM pour positionner le formulaire 
     const afficherElement = document.querySelector("#tableproduit");
-    
+
     const structureFormulaire = `
     <div class="formulaireCommande">
             <h2 class="titreFormulaire">Remplissez le formulaire pour valider votre commande</h2>
         
             <form class="contenuformulaire">
                 
-                <label for="prenom">Prénom :</label>
+                <label for="prenom">Prénom :</label><span id="prenomManquant" class="styleManquant"></span>
                 <input type="text" id="prenom" name="prenom" required>
 
-                <label for="nom">Nom :</label>
+                <label for="nom">Nom :</label><span id="nomManquant" class="styleManquant"></span>
                 <input type="text" id="nom" name="nom" required>
                 
 
-                <label for="adresse" class="adresse">Adresse :</label>
+                <label for="adresse" class="adresse">Adresse :</label><span id="adresseManquant" class="styleManquant"></span>
                 <textarea id="adresse" name="adresse" required></textarea>
 
-                <label for="ville">Ville :</label>
+                <label for="ville">Ville :</label><span id="villeManquant" class="styleManquant"></span>
                 <input type="text" id="ville" name="ville" required>
 
-                <label for="codepostal">Code postal :</label>
+                <label for="codepostal">Code postal :</label><span id="codePostalManquant" class="styleManquant"></span>
                 <input type="text" id="codepostal" name="codepostal" required>
 
-                <label for="email">E-mail :</label>
+                <label for="email">E-mail :</label><span id="mailManquant" class="styleManquant"></span>
                 <input type="text" id="email" name="email" required>
 
                 <button id="envoyerFormulaire" type="submit" name="envoyerFormulaire">
@@ -138,8 +136,8 @@ const afficherFormulaireHtml = () => {
             </form>
         </div>`;
 
-        //injection HTML 
-        afficherElement.insertAdjacentHTML("afterend", structureFormulaire);
+    //injection HTML 
+    afficherElement.insertAdjacentHTML("afterend", structureFormulaire);
 };
 
 //Affichage du formulaire
@@ -153,69 +151,176 @@ btnEnvoyerForm.addEventListener("click", (e) => {
     e.preventDefault();
 
     //je récupére les valeurs du formulaire
-    const formulaireValues = {
-        prenom :document.querySelector("#prenom").value,
-        nom : document.querySelector("#nom").value,
-        adresse : document.querySelector("#adresse").value,
-        ville : document.querySelector("#ville").value,
-        codePostal : document.querySelector("#codepostal").value,
-        email : document.querySelector("#email").value
-    }
+    const contact = {
+        firstName: document.querySelector("#prenom").value,
+        lastName: document.querySelector("#nom").value,
+        address: document.querySelector("#adresse").value,
+        city: document.querySelector("#ville").value,
+        zipCode: document.querySelector("#codepostal").value,
+        email: document.querySelector("#email").value
+    };
 
-    const textAlert = (value) =>{
+    //controle formulaire avant envoie dans le localstorage  
+    const firstName = contact.firstName;
+    const lastName = contact.lastName;
+    const email = contact.email;
+    const address = contact.address;
+    const city = contact.city;
+
+    // constante qui contient mon message d'erreur
+    const textAlert = (value) => {
         return `${value}: Les chiffres et symboles ne sont pas autorisé \n Il ne faut pas dépasser 20 caractères, minimum 3 caractères`
+    };
+
+    //dans ma constante qui contient mon regEx
+    const regExPrenomNomVille = (value) => {
+        return /^([A-Za-z]{3,20})?([-]{0,1})?([A-Za-z]{3,20})$/.test(value)
+
+    };
+
+    //il faut créer un regEx spécifique pour le code postal(que des chiffres et un nombre de 5 chiffres)
+    const regExCodePostal = (value) => {
+        return /^[0-9]{5}$/.test(value)
+    };
+
+    //il faut créer un regEx spécifique pour le mail
+    const regExEmail = (value) => {
+        return /^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})$/.test(value)
+    };
+
+    //il faut créer un regEx spécifique pour l'adresse donc il créer une constante avec une fonction fléchée 
+    const regExAdresse = (value) => {
+        return /^[A-Za-z0-9\s]{5,50}$/.test(value)
+    };
+
+    //pour m'éviter de copier/coller tout il faut créer une fonction qu'il faudra appeller dans les fonctions de contrôle
+    function champManquantVide(querySelectorId) {
+        document.querySelector(`#${querySelectorId}`).textContent = "";
+    };
+
+    function champManquantErreur(querySelectorId) {
+        document.querySelector(`#${querySelectorId}`).textContent = "Veuillez remplir correctement ce champ";
+    };
+
+
+
+    // ma fonction qui contrôle le prénom du formulaire
+    function prenomControle() {
+        //contrôle du prénom avec les regex
+        const lePrenom = contact.firstName;
+        if (regExPrenomNomVille(lePrenom)) {
+            champManquantVide("prenomManquant");
+            return true;
+        } else {
+            champManquantErreur("prenomManquant");
+            return false;
+        };
+    };
+    // ma fonction qui contrôle le nom du formulaire
+    function nomControle() {
+        //contrôle du nom avec les regex
+        const leNom = contact.lastName;
+        if (regExPrenomNomVille(leNom)) {
+            champManquantVide("nomManquant");
+            return true;
+        } else {
+            champManquantErreur("nomManquant");
+            return false;
+        };
+    };
+    // ma fonction qui contrôle la ville du formulaire
+    function villeControle() {
+        //contrôle de la ville avec les regex
+        const laVille = contact.city;
+        if (regExPrenomNomVille(laVille)) {
+            champManquantVide("villeManquant");
+            return true;
+        } else {
+            champManquantErreur("villeManquant");
+            return false;
+        };
+    };
+
+    // ma fonction qui contrôle le code postal du formulaire
+    function codePostalControle() {
+        const codePostal = contact.zipCode;
+        if (regExCodePostal(codePostal)) {
+            champManquantVide("codePostalManquant");
+            return true;
+        } else {
+            champManquantErreur("codePostalManquant");
+            return false;
+        };
+    };
+
+    // ma fonction qui contrôle l'e-mail du formulaire
+    function emailControle() {
+        const eMail = contact.email;
+        if (regExEmail(eMail)) {
+            champManquantVide("mailManquant");
+            return true;
+        } else {
+            champManquantErreur("mailManquant");
+            return false;
+        };
+    };
+
+    // ma fonction qui contrôle l'adresse du formulaire
+    function adresseControle() {
+        const adresse = contact.adress;
+        if (regExAdresse(adresse)) {
+            champManquantVide("adresseManquant");
+            return true;
+        } else {
+            champManquantErreur("adresseManquant");
+            return false;
+        };
+    };
+
+
+
+    //Condition pour que le formulaire soit pris en compte dans le localStorage
+    if (prenomControle() && nomControle() && villeControle() && codePostalControle() && emailControle() && adresseControle()) {
+        //Mettre l'objet contact dans le localStorage
+        localStorage.setItem("contact", JSON.stringify(contact));
     }
 
-    const regExPrenomNomVille = (value) =>{
-        return /^[A-Za-z]{3,20}$/.test(value)
-    
+    //je met les values du formulaire avec les produits sélectionnées dans un objet pour envoyer au serveur 
+    {
+        panier.forEach(cameraId => {
+            products.push(cameraId._id);
+        });
+        console.log(products);
+
+        const toutEnvoyer = JSON.stringify({
+            products,
+            contact,
+        });
+
+
+        console.log(toutEnvoyer);
+        //pour voir le résultat du serveur dans la console
+        methodPost(toutEnvoyer);
     }
 
-    function prenomControle(){
-    //contrôle du prénom avec les regex
-    const lePrenom = formulaireValues.prenom;
-    if(regExPrenomNomVille(lePrenom)){
-        return true;
-    }else{
-        alert(textAlert("PRENOM"));
-        return false;
-    };
-};
-
-function nomControle(){
-    //contrôle du nom avec les regex
-    const leNom = formulaireValues.nom;
-    if(regExPrenomNomVille(leNom)){
-        return true;
-    }else{
-        alert(textAlert("NOM"));
-        return false;
-    };
-};
-function villeControle(){
-    //contrôle de la ville avec les regex
-    const laVille = formulaireValues.ville;
-    if(regExPrenomNomVille(laVille)){
-        return true;
-    }else{
-        alert(textAlert("VILLE"));
-        return false;
-    };
-};
-    
-//Condition pour que le formulaire soit pris en compte dans le localStorage
-    if(prenomControle() && nomControle() && villeControle()){
-        //Mettre l'objet formulaireValues dans le localStorage
-    localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues));
-    }else {
-        alert("Veuillez bien remplir le formulaire");
-    }
-
-//je met les values du formulaire avec les produits sélectionnées dans un objet pour envoyer au serveur 
-const toutEnvoyer = {
-    panier,
-    formulaireValues
-}
 });
 
+function methodPost(toutEnvoyer) {
+    //Envoie de l'objet dans le serveur
+    fetch("http://localhost:3000/api/cameras/order", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: toutEnvoyer
 
+    }).then(response => {
+        return response.json();
+    }).then(response => {
+        localStorage.setItem("contacts", JSON.stringify(response.contact));
+    }).catch(error => {
+        console.log(error);
+    });
+
+
+};
