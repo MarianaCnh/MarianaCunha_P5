@@ -1,6 +1,5 @@
 /******GLOBAL******/
 body {
-    background-color: #8fc0a9;
     color: black;
     margin: auto;
     height: 100%;
@@ -18,7 +17,7 @@ ul {
 }
 
 footer {
-    background-color: #70a288;
+    background-color: #9d4edd;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -28,9 +27,9 @@ footer {
 
 /************ HEADER ************/
 
-.logo {
-    filter: brightness(150);
-
+img {
+    width: 200px;
+    height: 70px;
 }
 
 .nomBoutique {
@@ -39,20 +38,20 @@ footer {
 }
 .header {
     display: flex;
-    background-color: #70a288;
+    background-color: #9d4edd;
     padding: 15px 0;
 }
 
 .navigation {
     width: 100%;
-    margin-right: 10px;
 }
 
 .acces {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-end;
-    margin: 0;
+    margin-left: 30px;
+    padding: 0;
 }
 
 .home {
@@ -86,7 +85,7 @@ footer {
     display: flex;
     flex-direction: column;
     text-align: center;
-    border: #70a288 solid 2px;
+    border: #9d4edd solid 2px;
     border-radius: 20px;
     margin: 10px;
 }
@@ -95,6 +94,54 @@ footer {
     width: 100%;
     height: auto;
     border-radius: 20px 20px 0 0;
+}
+
+.qteOptionProduit {
+    display: flex;
+    flex-direction: column;
+}
+
+#optionProduit {
+    color: white;
+    background-color: #9d4edd;
+    width: 50%;
+    outline: none;
+    margin: 10px;
+    align-self: center;
+}
+
+#qteProduit {
+    color: white;
+    background-color: #9d4edd;
+    width: 50%;
+    outline: none;
+    margin: 10px;
+    align-self: center;
+}
+
+.boutoncommande {
+    border: 3px solid#9d4edd;
+    color: white;
+    border-radius: 30px;
+    width: 80%;
+    background-color: #9d4edd;
+    margin: 10px;
+    font-family: 'Oxygen','Courier New', Courier, monospace;
+    padding: 10px;
+    outline: none;
+}
+
+.btn-panier {
+    border: 3px solid#9d4edd;
+    color: white;
+    border-radius: 30px;
+    width: 80%;
+    background-color: #9d4edd;
+    margin: 10px;
+    font-family: 'Oxygen','Courier New', Courier, monospace;
+    padding: 10px;
+    align-self: center;
+    outline: none;
 }
 
 /******** FOOTER *********/
@@ -108,35 +155,67 @@ footer {
 }
 
 /************** PANIER ***********/
-table {
-    display: flex;
-    justify-content: center;
-}
-td {
-    border: 5px solid black;
-    padding: 5px;
-}
-th {
-    display: flex;
-    flex-direction: column;
-}
 
 .inputqte {
     width:3%;
 }
 
+#tableproduit {
+    border: 2px solid #9d4edd;
+    width: 100%;
+    padding: 5px;
+}
+
+#formulaire {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+}
+
+.optionProduit {
+    font-weight: bold;
+}
+
+.trproduit {
+    padding: 10px;
+}
+
+#tdproduit {
+    margin: 50px;
+}
+
+.btn-supprimer {
+    border: 3px solid#9d4edd;
+    border-radius: 20px;
+    background-color: #9d4edd;
+    padding: 1px;
+    width: 20px;
+    outline: none;
+}
+
+.totalProduit {
+    width: 100%;
+}
+
+#calculPrixQte {
+    margin: 20px;
+    font-weight: bold;
+}
+
 /*************** FORMULAIRE ***************/
 
 .titreFormulaire {
-    display: flex;
-    justify-content: center;
+    margin: 30px;
+    font-size: large;
+    flex-wrap: wrap;
 }
 
 .contenuformulaire {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin: 0 0 20% 20%;
+    align-items: center; 
 }
 
 label {
@@ -144,56 +223,59 @@ label {
 }
 
 #prenom {
-    border: 3px solid#70a288;
-    width: 40%;
+    border: 3px solid#9d4edd;
+    width: 50%;
     padding: 5px;
     margin: 0 10px 20px 0;
 }
 
 #nom {
-    border: 3px solid#70a288;
-    width: 40%;
+    border: 3px solid#9d4edd;
+    width: 50%;
     padding: 5px;
     margin: 0 10px 20px 0;
 }
 
 #adresse {
-    border: 3px solid#70a288;
-    width: 40%;
+    border: 3px solid#9d4edd;
+    width: 50%;
     margin: 0 10px 20px 0;
     
 }
 
 #ville {
-    border: 3px solid#70a288;
-    width: 40%;
+    border: 3px solid#9d4edd;
+    width: 50%;
     padding: 5px;
     margin: 0 10px 20px 0;
 }
 
 #codepostal {
-    border: 3px solid#70a288;
-    width: 40%;
+    border: 3px solid#9d4edd;
+    width: 50%;
     padding: 5px;
     margin: 0 10px 20px 0;
 }
 
 #email {
-    border: 3px solid#70a288;
-    width: 40%;
+    border: 3px solid#9d4edd;
+    width: 50%;
     padding: 5px;
     margin: 0 10px 20px 0;
 }
 
 #envoyerFormulaire {
-    border: 3px solid#70a288;
+    border: 3px solid#9d4edd;
     border-radius: 30px;
-    width: 20%;
-    background-color: #9ae0c0;
+    width: 50%;
+    background-color: #9d4edd;
     margin: 10px;
     font-family: 'Oxygen','Courier New', Courier, monospace;
     padding: 10px;
+    color: white;
+  
 }
+
 
 .styleManquant {
     color: rgb(153, 63, 63);

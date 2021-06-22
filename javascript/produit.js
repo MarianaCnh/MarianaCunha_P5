@@ -36,12 +36,18 @@ function showProduct(camera) {
       <p class="name">${camera.name}</p>
       <p class="description">${camera.description}</p>
       <p class="price">${camera.price / 100}€</p>
-      <form>
+      <form class="qteOptionProduit">
+      <label for="optionProduit">Les options :</label>
         <select name="optionProduit" id="optionProduit">${this.showOptionLenses(camera.lenses)}
+        </select>
+        <label for="qteProduit">Choisir la quantité :</label>
+        <select name="qteProduit" id="qteProduit">
         </select>
         </form>
         <button type="submit" class="btn-panier">Commander ici</button>
       </article>`;
+      //mettre les quantité dans le HTML
+  ajoutQte(document.querySelector("#qteProduit"));
 }
 productFetch();
 
@@ -56,17 +62,13 @@ function showOptionLenses(lenses) {
     return optionLenses;
 };
 
-function getPanier() {
-   return JSON.parse(localStorage.getItem("panier")) || [];
-}
-
-
-
 function ajoutDuProduit(camera){
 
   qtePlace = document.querySelector(".inputqte");
   const choixQte = qtePlace;
   let autreItem = true;
+  positionElementQte = document.querySelector("#qteProduit");
+  const qteChoix = positionElementQte.value;
 
   const optionsLentilles = document.querySelector("#optionProduit");
   const choixLenses = optionsLentilles.value;
@@ -76,7 +78,7 @@ function ajoutDuProduit(camera){
     _id : camera._id,
     name : camera.name,
     price : camera.price / 100,
-    qte : 1,
+    qte : qteChoix,
     option : choixLenses,
   };
   
@@ -89,7 +91,7 @@ function ajoutDuProduit(camera){
 //Pour chaque produit du même id et même option il faut augmenté la quantité
   panier.forEach((produit) => {
     if (camera._id === camerasProduit._id && choixLenses === produit.option) {
-      camerasProduit.qte = parseInt(produit.qte) + parseInt(choixQte);
+      camerasProduit.qte = parseInt(produit.qte) + parseInt(qteChoix);
       produit.qte ++
       autreItem = false;
     }
@@ -100,12 +102,26 @@ function ajoutDuProduit(camera){
 
   if (autreItem)panier.push(camerasProduit);
   localStorage.setItem("panier", JSON.stringify(panier));
+}
+
+function ajoutQte(positionElementQte){
+  if(positionElementQte) {
+  
+  //une variable avec la quantité possible pour le produit
+  const structureQte = `
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  `;
+    positionElementQte.innerHTML = structureQte;
+  }else{
+    console.log(error);
+  };
+  }
 
 
-// // push dans mon local storage pour récup les info de mon objet
-// panier.push(camerasProduit);
-// localStorage.setItem("panier", JSON.stringify(panier));
-};
 
 
 

@@ -3,12 +3,14 @@ let panier = JSON.parse(localStorage.getItem("panier"));
 
 //---------affichage des produits du panier
 //sélection de l'id pour injecter le code HTML 
-const positionElement = document.querySelector("#tableproduit")
+const positionElement1 = document.querySelector("#tableproduit")
+const positionElement2 = document.querySelector("#calculPrixQte")
+
+
 
 let produitPanier = [];
 let totalPrix = 0;
 let autreTotal = 0;
-let plus = document.querySelectorAll(".btn-add");
 let qteItem = document.querySelectorAll("inputqte");
 let products = [];
 // products = JSON.parse(localStorage.getItem("panier"));
@@ -18,20 +20,22 @@ let products = [];
 //Si le panier est vide il faut l'afficher 
 if (panier === null || panier == 0) {
     const panierVide = `
-    <div>Le panier est vide</div>`;
-    positionElement.innerHTML = panierVide;
+    <div class="panierVide">Le panier est vide</div>`;
+    positionElement1.innerHTML = panierVide;
 } else {
     //si le panier n'est pas vide il faut afficher les produits, j'utilise une boucle for avec itérations pour cela 
     for (k = 0; k < panier.length; k++) {
         produitPanier = produitPanier + `
-                <td id="nomproduit">${panier[k].name}
-                Option :${panier[k].option}
-                ${panier[k].price}€
-                <button class="btn-remove">-</button>
-                <span class="inputqte">${panier[k].qte}</span>
-                <button class="btn-add">+</button>
-                <button class="btn-supprimer"><i class="fas fa-trash-alt"></i></button></td>  `;
-        positionElement.innerHTML = produitPanier;
+                <tbody>
+                <tr>
+                <td class="tdtableauproduit" >${panier[k].name}</td>
+                <td class="tdOption"><p class="optionProduit">Option:</p>${panier[k].option}</td>
+                <td>${panier[k].price}€</td>
+                <td><span class="inputqte">${panier[k].qte}</span></td>
+                <td><button class="btn-supprimer"><i class="fas fa-trash-alt"></i></button></td>
+                </tr> 
+                </tbody> `;
+        positionElement1.innerHTML = produitPanier;
 
 
     }
@@ -81,8 +85,8 @@ function calculQuantiteProduit() {
         autreTotal += panier.qte;
         console.log(autreTotal)
     });
-    let quantiteTotal = `<div>nombre total de produit : ${autreTotal}</div>`;
-    positionElement.insertAdjacentHTML("beforeend", quantiteTotal);
+    let quantiteTotal = `<div class="totalProduit" >Nombre total de produit : ${autreTotal}</div>`;
+    positionElement2.insertAdjacentHTML("beforeend", quantiteTotal);
 };
 calculQuantiteProduit();
 
@@ -92,8 +96,8 @@ function calculTotalPrix() {
         console.log(totalPrix)
     });
 
-    let prixTotal = `<div>Le prix total est de : ${totalPrix}</div>`;
-    positionElement.insertAdjacentHTML("beforeend", prixTotal);
+    let prixTotal = `<div class="totalPrix" ><p>Le prix total est de : ${totalPrix}</p></div>`;
+    positionElement2.insertAdjacentHTML("beforeend", prixTotal);
 
 };
 calculTotalPrix()
@@ -103,11 +107,11 @@ calculTotalPrix()
 
 const afficherFormulaireHtml = () => {
     //Sélection élément du DOM pour positionner le formulaire 
-    const afficherElement = document.querySelector("#tableproduit");
+    const afficherElement = document.querySelector("#formulaire");
 
     const structureFormulaire = `
     <div class="formulaireCommande">
-            <h2 class="titreFormulaire">Remplissez le formulaire pour valider votre commande</h2>
+            <h2 class="titreFormulaire">Remplissez le formulaire pour valider votre commande :</h2>
         
             <form class="contenuformulaire">
                 
@@ -317,7 +321,11 @@ function methodPost(toutEnvoyer) {
     }).then(response => {
         return response.json();
     }).then(response => {
-        localStorage.setItem("contacts", JSON.stringify(response.contact));
+        localStorage.setItem("contact", JSON.stringify(response.contact));
+        localStorage.setItem("orderId", JSON.stringify(response.orderId));
+        localStorage.setItem("totalPrix", JSON.stringify(totalPrix));
+        localStorage.removeItem('products');
+        window.location.replace("confirmation.html");
     }).catch(error => {
         console.log(error);
     });
