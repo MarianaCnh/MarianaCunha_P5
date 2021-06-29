@@ -3,8 +3,8 @@ let panier = JSON.parse(localStorage.getItem("panier"));
 
 //---------affichage des produits du panier
 //sélection de l'id pour injecter le code HTML 
-const positionElement1 = document.querySelector("#tableproduit")
-const positionElement2 = document.querySelector("#calculPrixQte")
+const positionElement1 = document.querySelector("#tableproduit");
+const positionElement2 = document.querySelector("#calculPrixQte");
 
 
 
@@ -41,23 +41,6 @@ if (panier === null || panier == 0) {
     }
 };
 
-// function btnAdd() {
-//     const boutonAdd = document.getElementsByClassName(".btn-add");
-
-//     for (let i = 0; i < boutonAdd.length; i++) {
-//         boutonAdd[i].addEventListener("click", function(event) {
-//             event.preventDefault();
-//             panier[i].qte++
-
-//                 localStorage.setItem("panier", JSON.stringify(panier));
-//         });
-
-//     }
-// };
-
-
-// Si le panier dans le localStorage est strictement égal au panier alors il incrémente dans le localStorage
-
 function supprimerBouton() {
     // Supprimer les articles 
     let btnSupp = document.querySelectorAll(".btn-supprimer");
@@ -80,24 +63,17 @@ function supprimerBouton() {
 supprimerBouton();
 
 
-function calculQuantiteProduit() {
-    JSON.parse(localStorage.getItem("panier")).forEach((panier) => {
-        autreTotal += panier.qte;
-        console.log(autreTotal)
-    });
-    let quantiteTotal = `<div class="totalProduit" >Nombre total de produit : ${autreTotal}</div>`;
-    positionElement2.insertAdjacentHTML("beforeend", quantiteTotal);
-};
-calculQuantiteProduit();
-
 function calculTotalPrix() {
+    if (panier !== null) {
     JSON.parse(localStorage.getItem("panier")).forEach((panier) => {
         totalPrix += panier.price *= panier.qte;
         console.log(totalPrix)
+        
     });
 
-    let prixTotal = `<div class="totalPrix" ><p>Le prix total est de : ${totalPrix}</p></div>`;
+    let prixTotal = `<div class="totalPrix" ><p>Le prix total est de : ${totalPrix} €</p></div>`;
     positionElement2.insertAdjacentHTML("beforeend", prixTotal);
+}
 
 };
 calculTotalPrix()
@@ -121,7 +97,6 @@ const afficherFormulaireHtml = () => {
                 <label for="nom">Nom :</label><span id="nomManquant" class="styleManquant"></span>
                 <input type="text" id="nom" name="nom" required>
                 
-
                 <label for="adresse" class="adresse">Adresse :</label><span id="adresseManquant" class="styleManquant"></span>
                 <textarea id="adresse" name="adresse" required></textarea>
 
@@ -133,7 +108,7 @@ const afficherFormulaireHtml = () => {
 
                 <label for="email">E-mail :</label><span id="mailManquant" class="styleManquant"></span>
                 <input type="text" id="email" name="email" required>
-
+                
                 <button id="envoyerFormulaire" type="submit" name="envoyerFormulaire">
                     Confirmation de la commande
                 </button>
@@ -150,6 +125,8 @@ afficherFormulaireHtml();
 //Je sélectionne le bouton pour envoyer le formulaire 
 const btnEnvoyerForm = document.querySelector("#envoyerFormulaire");
 
+
+
 // Un addEventListener pour que au click mon bouton envoye les données du formulaire
 btnEnvoyerForm.addEventListener("click", (e) => {
     e.preventDefault();
@@ -164,12 +141,21 @@ btnEnvoyerForm.addEventListener("click", (e) => {
         email: document.querySelector("#email").value
     };
 
+    //je met les values du formulaire avec les produits sélectionnées dans un objet pour envoyer au serveur 
+    {
+        panier.forEach(cameraId => {
+            products.push(cameraId._id);
+        });
+        console.log(products);
+    }
+
     //controle formulaire avant envoie dans le localstorage  
     const firstName = contact.firstName;
     const lastName = contact.lastName;
     const email = contact.email;
     const address = contact.address;
     const city = contact.city;
+    
 
     // constante qui contient mon message d'erreur
     const textAlert = (value) => {
@@ -281,32 +267,20 @@ btnEnvoyerForm.addEventListener("click", (e) => {
         };
     };
 
-
-
     //Condition pour que le formulaire soit pris en compte dans le localStorage
     if (prenomControle() && nomControle() && villeControle() && codePostalControle() && emailControle() && adresseControle()) {
         //Mettre l'objet contact dans le localStorage
         localStorage.setItem("contact", JSON.stringify(contact));
-    }
 
-    //je met les values du formulaire avec les produits sélectionnées dans un objet pour envoyer au serveur 
-    {
-        panier.forEach(cameraId => {
-            products.push(cameraId._id);
-        });
-        console.log(products);
-
-        const toutEnvoyer = JSON.stringify({
+        const toutEnvoyer = JSON.stringify ({
             products,
             contact,
-        });
+        })
 
-
-        console.log(toutEnvoyer);
-        //pour voir le résultat du serveur dans la console
         methodPost(toutEnvoyer);
+    }else {
+        console.log("error");
     }
-
 });
 
 function methodPost(toutEnvoyer) {

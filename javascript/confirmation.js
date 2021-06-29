@@ -1,3 +1,4 @@
+
 //il faut récupérer les données pour pouvoir les appliquées sur la page confirmation
 let contact = JSON.parse(localStorage.getItem("contact"));
 let orderId = JSON.parse(localStorage.getItem("orderId"));
@@ -13,7 +14,7 @@ function messageConfirmation(msgFinal){
             <p>Numéro de commande : ${orderId}</p>
             <p>Le total de votre commande est de : ${totalPrix} €</p>
 
-            <h2>Revenez vite !</h2>
+            <h2>À la prochaine !</h2>
             </div>`;
 
         msgFinal.innerHTML = confirm;

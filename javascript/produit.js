@@ -63,9 +63,7 @@ function showOptionLenses(lenses) {
 };
 
 function ajoutDuProduit(camera){
-
-  qtePlace = document.querySelector(".inputqte");
-  const choixQte = qtePlace;
+  
   let autreItem = true;
   positionElementQte = document.querySelector("#qteProduit");
   const qteChoix = positionElementQte.value;
@@ -98,8 +96,8 @@ function ajoutDuProduit(camera){
   });
 
 }
-
-
+    window.alert("Les produits ont bien été ajouté au panier");
+    
   if (autreItem)panier.push(camerasProduit);
   localStorage.setItem("panier", JSON.stringify(panier));
 }
@@ -120,57 +118,3 @@ function ajoutQte(positionElementQte){
     console.log(error);
   };
   }
-
-
-
-
-
-
-// actualiserPanier = () => {
-//     console.log(creationItem);
-// }
-// var bouton = document.getElementsByClassName('.btn-panier');
-
-// for(var i = 0; i < bouton.length; i++) {
-//     bouton[i].addEventListener("click",function(){
-//         let key = this.getAttribute('key');
-//         creationItem[key].quantite++;
-//         actualiserPanier();
-//         return false;
-//     })
-// };
-
-// const envoyerPanier = document.querySelector(".btn-panier");
-
-// envoyerPanier.addEventListener("click", (event) => {
-//     event.preventDefault();
-
-//     const choixProduit = camId.value;
-//     console.log(choixProduit);
-
-//     let optionProduit = {
-
-//     
-// function checklength(camerasProduit, cam) {
-//   if (cam.length === 0) {
-//     camerasProduit = 1;
-//   } else {
-//     sameCam(camerasProduit, cam);
-//   }
-// }
-
-//Si il y a plus d'une camera dans le tableau, vérifie qu'ils sont identique
-// function sameCam(camerasProduit, cam) {
-//     for (i = 0; i < cam.length; i++) {
-//       if (
-//         camerasProduit._id === cam[i]._id &&
-//         camerasProduit.option === cam[i].option
-//       ) {
-//         cam[i] += 1;
-//         camerasProduit = cam[i];
-//       } else {
-//         camerasProduit = 1;
-//       }
-//     }
-//     checklength(camerasProduit, cam);
-//   };

@@ -1,9 +1,10 @@
 /******GLOBAL******/
 body {
+    background-color: white;
     color: black;
     margin: auto;
-    height: 100%;
     font-family: 'Oxygen','Courier New', Courier, monospace;
+    
 }
 
 a {
@@ -13,17 +14,7 @@ a {
 
 ul {
     list-style: none;
-    margin: 0;
 }
-
-footer {
-    background-color: #9d4edd;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-}
-
-
 
 /************ HEADER ************/
 
@@ -146,15 +137,26 @@ img {
 
 /******** FOOTER *********/
 
+footer {
+    background-color: #9d4edd;
+    padding: 20px;
+}
+
 .contact {
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    padding: 20px 0;
-    width: 100%;
+    margin: 16px;
+    padding: 0px;
 }
 
 /************** PANIER ***********/
+
+.panierVide {
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    margin:10px;
+}
 
 .inputqte {
     width:3%;
@@ -187,16 +189,16 @@ img {
 }
 
 .btn-supprimer {
-    border: 3px solid#9d4edd;
+    border: 3px solid #9d4edd;
     border-radius: 20px;
-    background-color: #9d4edd;
-    padding: 1px;
-    width: 20px;
+    padding: 5px;
     outline: none;
 }
 
-.totalProduit {
-    width: 100%;
+.totalPrix {
+    font-weight: lighter;
+    font-style: oblique;
+    font-size: larger;
 }
 
 #calculPrixQte {
@@ -280,3 +282,143 @@ label {
 .styleManquant {
     color: rgb(153, 63, 63);
 }
+
+.messageFinalCommande {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*************** CONFIRMATION ***************/
+
+.messageFinalCommande{
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+/*********MEDIA QUERIES*********/
+
+
+/*******TABLETTE**********/
+
+@media screen and (min-width:768px) and (max-width:1146px){
+
+    #cam {
+        display: flex;
+        justify-content: center;
+        margin: 20px;
+        padding:57px;
+    }
+    .cardProduct {
+        width: 70%; 
+    }
+
+
+    .acces {
+        display: flex;
+        flex-direction: row;
+        margin: 20px;
+    }
+
+    .logo {
+        width: 200px;
+        height: 70px;
+        margin-left: 15px;
+    }
+
+    .boutoncommande {
+        width: 40%;
+    }
+
+    .btn-panier {
+        width: 40%;
+    }
+
+    #optionProduit {
+        width: 30%;
+    }
+
+    #qteProduit {
+        width: 30%;
+    }
+    .contenuformulaire {
+        padding: 30px;
+    }
+
+    .messageFinalCommande {
+        height: 100vh;
+    }
+
+}
+
+/******************DESKTOP***************/
+
+@media screen and (min-width:1147px) and (max-width:2000px){
+
+   
+    #cam {
+        display: flex;
+        justify-content: center;
+        margin: 20px;
+        padding: 57px;
+    }
+
+    .sectionProduct{
+        padding: 50px;
+    }
+    .cardProduct {
+        width: 40%;
+    }
+
+
+    .acces {
+        display: flex;
+        flex-direction: row;
+        margin: 20px;
+    }
+
+    .logo {
+        width: 200px;
+        height: 70px;
+        margin-left: 15px;
+    }
+
+    .boutoncommande {
+        width: 40%;
+    }
+
+    .btn-panier {
+        width: 40%;
+    }
+
+    #optionProduit {
+        width: 30%;
+    }
+
+    #qteProduit {
+        width: 30%;
+    }
+
+    .tdtableauproduit {
+        padding: 30px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .titreFormulaire{
+        display: flex;
+        justify-content: center;
+        font-size: x-large;
+    }
+
+    .contenuformulaire {
+        padding: 100px;
+        margin: 50px;
+    }
+
+    .messageFinalCommande {
+        height: 100vh;
+    }
+}
+
